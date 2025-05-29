@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WhatsApp Web Launcher</title>
+  <title>KarimTools | WhatsApp Broadcast</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -12,7 +11,7 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #2F80ED, #56CCF2);
+      background: linear-gradient(135deg, #004aad, #0acffe);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -21,30 +20,33 @@
     }
     .container {
       background: #ffffff;
-      padding: 2rem 2.5rem;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       width: 100%;
-      max-width: 400px;
+      max-width: 600px;
       text-align: center;
+    }
+    .logo {
+      width: 120px;
+      margin-bottom: 1rem;
     }
     h1 {
       font-size: 24px;
       margin-bottom: 1rem;
-      color: #333;
+      color: #004aad;
     }
-    input[type="text"] {
+    textarea, input {
       width: 100%;
       padding: 12px;
-      font-size: 16px;
+      font-size: 15px;
       border: 2px solid #ccc;
-      border-radius: 12px;
-      margin-bottom: 1.2rem;
-      transition: 0.3s;
+      border-radius: 10px;
+      margin-bottom: 1rem;
     }
-    input[type="text"]:focus {
-      border-color: #2F80ED;
-      outline: none;
+    textarea {
+      resize: vertical;
+      min-height: 80px;
     }
     button {
       width: 100%;
@@ -54,39 +56,51 @@
       border: none;
       font-size: 16px;
       font-weight: 600;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: 0.3s ease-in-out;
+      transition: 0.3s;
     }
     button:hover {
       background-color: #1ebc57;
     }
     .footer {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       font-size: 12px;
-      color: #666;
+      color: #555;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>✨ WhatsApp Web Launcher</h1>
-    <input type="text" id="phoneInput" placeholder="Enter full phone number (e.g. 905123456789)" />
-    <button onclick="openWhatsApp()">📩 Open in WhatsApp Web</button>
-    <div class="footer">
-      Powered with <span style="color: red;">&hearts;</span> by Karim & ChatGPT
-    </div>
+    <img src="https://i.imgur.com/pu7uLPy.png" alt="KarimTools Logo" class="logo" />
+    <h1>Broadcast WhatsApp Messages</h1>
+    <textarea id="numbers" placeholder="Enter phone numbers separated by commas (e.g. 905123456789,962781234567)"></textarea>
+    <textarea id="message" placeholder="Type your message here..."></textarea>
+    <button onclick="sendMessages()">📤 Send Messages</button>
+    <div class="footer">&copy; 2025 KarimTools - Powered by ChatGPT 🚀</div>
   </div>
 
   <script>
-    function openWhatsApp() {
-      const phone = document.getElementById("phoneInput").value.trim();
-      if (!/^\d{8,15}$/.test(phone)) {
-        alert("Please enter a valid phone number (8–15 digits, no spaces or symbols). Example: 905123456789");
+    function sendMessages() {
+      const rawNumbers = document.getElementById("numbers").value;
+      const message = encodeURIComponent(document.getElementById("message").value.trim());
+      if (!rawNumbers || !message) {
+        alert("Please enter both phone numbers and a message.");
         return;
       }
-      const url = `https://web.whatsapp.com/send?phone=${phone}`;
-      window.open(url, '_blank');
+      const phones = rawNumbers.split(',').map(p => p.trim()).filter(p => /^\d{8,15}$/.test(p));
+      if (phones.length === 0) {
+        alert("No valid phone numbers detected.");
+        return;
+      }
+      let delay = 0;
+      phones.forEach((phone, index) => {
+        setTimeout(() => {
+          const url = `https://web.whatsapp.com/send?phone=${phone}&text=${message}`;
+          window.open(url, '_blank');
+        }, delay);
+        delay += 2000; // 2 seconds between messages
+      });
     }
   </script>
 </body>
