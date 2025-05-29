@@ -14,10 +14,10 @@
     }
     .pro-box {
       background: #fff;
-      border-radius: 28px;
-      box-shadow: 0 6px 36px #a7eaff30;
-      padding: 32px 19px 22px 19px;
-      width: 100%; max-width: 430px;
+      border-radius: 24px;
+      box-shadow: 0 6px 32px #a7eaff30;
+      padding: 28px 16px 20px 16px;
+      width: 100%; max-width: 420px;
       position: relative;
     }
     .karim-logo {
@@ -36,58 +36,84 @@
       user-select: none;
     }
     h1 {
-      font-size: 1.12rem; margin-bottom: 0.8rem; color: #107cb8;
+      font-size: 1.10rem; margin-bottom: 1.0rem; color: #107cb8;
       text-align: center; letter-spacing: 1px;
     }
     .radio-row {
       display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
-      gap: 14px; margin-bottom: 13px;
+      gap: 12px; margin-bottom: 15px;
     }
-    .radio-row label {
-      font-size: .96em;
-      display: flex; align-items: center; gap: 6px;
-      cursor: pointer;
-      padding: 0 1px;
+    /* Material radio style */
+    .radio-material {
+      display: flex; align-items: center; cursor: pointer; gap: 5px;
+      font-size: 13px; /* Small */
+      color: #377b9b;
       font-weight: 600;
       user-select: none;
-      transition: color .18s;
+      position: relative;
+      padding: 2px 4px;
+      transition: color .16s;
     }
-    .radio-row input[type="radio"] {
-      accent-color: #10b7d4;
-      width: 19px; height: 19px;
+    .radio-material input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      background-color: #fff;
       margin: 0 3px 0 0;
-      vertical-align: middle;
+      width: 17px; height: 17px;
+      border: 2px solid #b2ddf7;
+      border-radius: 50%;
+      outline: none;
       cursor: pointer;
-      transition: accent-color .18s;
+      transition: border-color .2s, box-shadow .2s;
+      position: relative;
+      box-shadow: 0 0.5px 2px #59e3ff16;
     }
-    .radio-row input[type="radio"]:focus {
-      outline: 2px solid #49c0fc;
+    .radio-material input[type="radio"]:checked {
+      border-color: #009be2;
+      background: #fff;
     }
-    .radio-row input[type="radio"]:checked + span {
-      color: #10b7d4;
+    .radio-material input[type="radio"]:checked::before {
+      content: '';
+      display: block;
+      width: 9px; height: 9px;
+      margin: 2.1px auto;
+      border-radius: 50%;
+      background: #009be2;
+      transition: background .18s;
+    }
+    .radio-material input[type="radio"]:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #65d7fa44;
+    }
+    .radio-material input[type="radio"]:not(:checked):hover {
+      border-color: #66d7fc;
+    }
+    .radio-material input[type="radio"]::before {
+      content: '';
+      display: block;
+      width: 9px; height: 9px;
+      margin: 2.1px auto;
+      border-radius: 50%;
+      background: transparent;
+      transition: background .18s;
+    }
+    .radio-material input[type="radio"]:checked + span {
+      color: #009be2;
       font-weight: bold;
-      letter-spacing: .2px;
     }
-
     textarea, input[type="text"] {
-      width: 100%; font-size: 15px; border-radius: 12px;
-      border: 1.6px solid #d8e2ea; margin-bottom: 1.1rem; background: #fafdff;
-      padding: 13px 12px; transition: border 0.17s;
+      width: 100%; font-size: 15px; border-radius: 10px;
+      border: 1.4px solid #d8e2ea; margin-bottom: 1.1rem; background: #fafdff;
+      padding: 12px 10px; transition: border 0.14s;
       font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
       box-shadow: none;
       outline: none;
       resize: vertical;
     }
-    textarea:focus, input[type="text"]:focus { border-color: #10b7d4; }
+    textarea:focus, input[type="text"]:focus { border-color: #009be2; }
     textarea {
-      min-height: 95px; max-height: 260px; line-height: 1.7;
-      margin-bottom: 11px;
-    }
-    .numbers-list {
-      display: flex; flex-direction: column; gap: 3px; font-size: 12.5px;
-      background: #f0f8ff;
-      border-radius: 7px; padding: 5px 7px 2px 8px; margin-bottom: 9px;
-      max-height: 92px; overflow-y: auto; color: #397bbf;
+      min-height: 88px; max-height: 220px; line-height: 1.7;
+      margin-bottom: 10px;
     }
     .current-label {
       font-size: 14px; font-weight: bold; color: #1178e5;
@@ -98,28 +124,27 @@
       font-size: 12px; font-weight: 600;
     }
     .actions-row {
-      display: flex; justify-content: space-between; gap: 8px; margin-bottom: 9px;
+      display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px;
     }
     .actions-row button {
-      flex: 1 1 0; padding: 10px 0; border-radius: 8px; font-size: 14px; border: none;
+      flex: 1 1 0; padding: 9px 0; border-radius: 8px; font-size: 13px; border: none;
       background: #fafdff; color: #127096; font-weight: bold; cursor: pointer; transition: 0.16s;
       border: 2px solid #c7eaf9; box-shadow: none;
     }
     .actions-row button:disabled { opacity: 0.5; cursor: not-allowed;}
     .actions-row .next { background: #25D366; color: #fff; border: none;}
-    .actions-row .open { background: #10b7d4; color: #fff; border: none;}
+    .actions-row .open { background: #009be2; color: #fff; border: none;}
     .actions-row .skip { background: #ffe4b3; color: #b67a10;}
     .actions-row .prev { background: #eee; color: #333; border: 1.5px solid #d8dde6;}
     .footer {
-      margin-top: 1.25rem; font-size: 12px; color: #555; text-align: center; letter-spacing: 1px;
+      margin-top: 1.1rem; font-size: 11.7px; color: #555; text-align: center; letter-spacing: 1px;
     }
     @media (max-width: 500px) {
-      .pro-box { padding: 8px 1px 9px 1px; }
-      .karim-logo { font-size: 1.12rem; letter-spacing: 2.2px;}
-      h1 { font-size: 1.01rem;}
-      textarea { min-height: 62px;}
-      .radio-row label { font-size: .90em; }
-      .radio-row { gap: 8px;}
+      .pro-box { padding: 8px 1px 8px 1px; }
+      .karim-logo { font-size: 1.1rem; letter-spacing: 2.1px;}
+      h1 { font-size: 0.98rem;}
+      textarea { min-height: 60px;}
+      .radio-material { font-size: 11px; }
     }
   </style>
 </head>
@@ -129,29 +154,23 @@
     <h1>WhatsApp Broadcast Sender</h1>
     <!-- اللغات -->
     <div class="radio-row" id="langSelector">
-      <label><input type="radio" name="lang" value="en" checked /><span>🇬🇧 English</span></label>
-      <label><input type="radio" name="lang" value="ar" /><span>🇸🇦 العربية</span></label>
-      <label><input type="radio" name="lang" value="tr" /><span>🇹🇷 Türkçe</span></label>
-      <label><input type="radio" name="lang" value="fr" /><span>🇫🇷 Français</span></label>
-      <label><input type="radio" name="lang" value="es" /><span>🇪🇸 Español</span></label>
-    </div>
-    <!-- قوالب الرسائل -->
-    <div class="radio-row" id="templateSelector">
-      <label><input type="radio" name="template" value="intro" checked /><span>📝 Sales Intro</span></label>
-      <label><input type="radio" name="template" value="thanks" /><span>🙏 Thank You</span></label>
-      <label><input type="radio" name="template" value="products" /><span>📦 Products Info</span></label>
+      <label class="radio-material"><input type="radio" name="lang" value="en" checked /><span>🇬🇧 English</span></label>
+      <label class="radio-material"><input type="radio" name="lang" value="ar" /><span>🇸🇦 العربية</span></label>
+      <label class="radio-material"><input type="radio" name="lang" value="tr" /><span>🇹🇷 Türkçe</span></label>
+      <label class="radio-material"><input type="radio" name="lang" value="fr" /><span>🇫🇷 Français</span></label>
+      <label class="radio-material"><input type="radio" name="lang" value="es" /><span>🇪🇸 Español</span></label>
     </div>
     <!-- نوع الإرسال -->
     <div class="radio-row" id="appSelector">
-      <label><input type="radio" name="wapp" value="web" checked /><span>💻 WhatsApp Web</span></label>
-      <label><input type="radio" name="wapp" value="mobile" /><span>📱 WhatsApp Mobile</span></label>
+      <label class="radio-material"><input type="radio" name="wapp" value="web" checked /><span>💻 WhatsApp Web</span></label>
+      <label class="radio-material"><input type="radio" name="wapp" value="mobile" /><span>📱 تطبيق واتساب</span></label>
     </div>
     <!-- أرقام الإرسال -->
     <textarea id="numbersInput" placeholder="Paste numbers, comma or newline separated"></textarea>
     <div class="current-label" id="currentLabel" style="display:none;"></div>
     <div class="counter-bar" id="counter"></div>
     <!-- الرسالة -->
-    <textarea id="messageInput" placeholder="Message will appear here (auto by language & type) and you can edit before sending"></textarea>
+    <textarea id="messageInput" placeholder="The message will appear here (auto by language) and you can edit before sending"></textarea>
     <!-- الأزرار -->
     <div class="actions-row">
       <button onclick="gotoPrev()" class="prev" id="btnPrev" title="Previous">&larr; Prev</button>
@@ -159,7 +178,6 @@
       <button onclick="openCurrent()" class="open" id="btnOpen" title="Open WhatsApp">Open</button>
       <button onclick="gotoNext()" class="next" id="btnNext" title="Next">Next &rarr;</button>
     </div>
-    <div class="numbers-list" id="numbersList" style="display:none;"></div>
     <div class="footer">&copy; 2025 KARIM | WhatsApp Sender PRO</div>
   </div>
   <script>
@@ -167,8 +185,7 @@
     let index = 0;
     let skipped = [];
     const templates = {
-      intro: {
-        en: `Hello 👋
+      en: `Hello 👋
 
 We are the Sales Department at EUROSWEET GIDA LTD. ŞTİ. (Istanbul – Turkey).
 
@@ -183,7 +200,7 @@ Looking forward to your reply!
 
 Best regards,
 Sales Department`,
-        ar: `مرحبًا 👋
+      ar: `مرحبًا 👋
 
 نحن قسم المبيعات في شركة EUROSWEET GIDA LTD. ŞTİ. (إسطنبول - تركيا).
 
@@ -198,7 +215,7 @@ Sales Department`,
 
 تحياتنا،
 قسم المبيعات`,
-        tr: `Merhaba 👋
+      tr: `Merhaba 👋
 
 Biz EUROSWEET GIDA LTD. ŞTİ. (İstanbul – Türkiye) Satış Departmanıyız.
 
@@ -213,7 +230,7 @@ Cevabınızı dört gözle bekliyoruz!
 
 Saygılarımızla,
 Satış Departmanı`,
-        fr: `Bonjour 👋
+      fr: `Bonjour 👋
 
 Nous sommes le département commercial de EUROSWEET GIDA LTD. ŞTİ. (Istanbul – Turquie).
 
@@ -228,7 +245,7 @@ Dans l’attente de votre réponse !
 
 Cordialement,
 Département des ventes`,
-        es: `Hola 👋
+      es: `Hola 👋
 
 Somos el Departamento de Ventas de EUROSWEET GIDA LTD. ŞTİ. (Estambul – Turquía).
 
@@ -243,106 +260,6 @@ Si está interesado, estaremos encantados de compartir nuestro catálogo, lista 
 
 Saludos cordiales,
 Departamento de Ventas`
-      },
-      thanks: {
-        en: `Thank you for your interest and trust in our products! 🙏
-
-If you need further information or have any questions, please let us know.
-
-Best regards,
-Sales Department`,
-        ar: `شكرًا لاهتمامكم وثقتكم بمنتجاتنا! 🙏
-
-لأي استفسار أو معلومات إضافية، لا تترددوا في التواصل معنا.
-
-تحياتنا،
-قسم المبيعات`,
-        tr: `Ürünlerimize gösterdiğiniz ilgi ve güven için teşekkür ederiz! 🙏
-
-Daha fazla bilgiye ihtiyacınız olursa veya sorularınız varsa lütfen bize bildirin.
-
-Saygılarımızla,
-Satış Departmanı`,
-        fr: `Merci pour votre intérêt et votre confiance envers nos produits ! 🙏
-
-Pour toute information supplémentaire ou question, n’hésitez pas à nous contacter.
-
-Cordialement,
-Département des ventes`,
-        es: `¡Gracias por su interés y confianza en nuestros productos! 🙏
-
-Si necesita más información o tiene alguna pregunta, no dude en contactarnos.
-
-Saludos cordiales,
-Departamento de Ventas`
-      },
-      products: {
-        en: `Our main products:
-- Croissants
-- Cakes
-- Biscuits
-- Donuts
-- Jelly
-- Wafers
-
-We guarantee quality, fast delivery, and competitive prices.
-
-Let us know if you wish to receive a detailed catalog and samples!
-
-Sales Department`,
-        ar: `منتجاتنا الرئيسية:
-- الكرواسون
-- الكيك
-- البسكويت
-- الدونات
-- الجيلي
-- الويفر
-
-نضمن لكم الجودة، وسرعة التوصيل، والأسعار التنافسية.
-
-راسلونا للحصول على الكتالوج المفصل أو عينات مجانية!
-
-قسم المبيعات`,
-        tr: `Ana ürünlerimiz:
-- Kruvasan
-- Kek
-- Bisküvi
-- Donut
-- Jöle
-- Gofret
-
-Kalite, hızlı teslimat ve rekabetçi fiyatlar garanti ediyoruz.
-
-Detaylı katalog ve numune almak isterseniz bize ulaşın!
-
-Satış Departmanı`,
-        fr: `Nos produits principaux :
-- Croissants
-- Gâteaux
-- Biscuits
-- Donuts
-- Gelées
-- Gaufrettes
-
-Nous garantissons la qualité, la livraison rapide et des prix compétitifs.
-
-Contactez-nous pour recevoir notre catalogue détaillé et des échantillons !
-
-Département des ventes`,
-        es: `Nuestros productos principales:
-- Cruasanes
-- Pasteles
-- Galletas
-- Donas
-- Gelatinas
-- Barquillos
-
-Garantizamos calidad, entrega rápida y precios competitivos.
-
-¡Contáctenos para recibir nuestro catálogo detallado y muestras!
-
-Departamento de Ventas`
-      }
     };
 
     function getNumbers() {
@@ -404,16 +321,12 @@ Departamento de Ventas`
     }
     function updateMessageBox() {
       const lang = document.querySelector('input[name="lang"]:checked').value;
-      const temp = document.querySelector('input[name="template"]:checked').value;
       const messageInput = document.getElementById("messageInput");
-      messageInput.value = templates[temp][lang];
+      messageInput.value = templates[lang];
       messageInput.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
       messageInput.style.textAlign = (lang === 'ar') ? 'right' : 'left';
     }
     document.querySelectorAll('input[name="lang"]').forEach(radio => {
-      radio.addEventListener('change', updateMessageBox);
-    });
-    document.querySelectorAll('input[name="template"]').forEach(radio => {
       radio.addEventListener('change', updateMessageBox);
     });
     window.addEventListener("DOMContentLoaded", () => {
