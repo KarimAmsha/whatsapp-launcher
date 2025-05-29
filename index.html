@@ -14,119 +14,219 @@
       height: 100vh; margin: 0;
     }
     .container {
-      background: #ffffff;
+      background: #fff;
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      width: 100%; max-width: 650px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      width: 100%; max-width: 700px;
       text-align: center;
+      position: relative;
     }
     .logo {
-      width: 120px; margin-bottom: 1rem;
+      width: 100px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 4px 10px #b6d0ff);
+      border-radius: 50%;
+      background: #f8fafc;
+      box-shadow: 0 2px 10px rgba(44,128,237,0.09);
+      padding: 8px;
     }
     h1 {
-      font-size: 22px; margin-bottom: 1rem; color: #004aad;
+      font-size: 25px; margin-bottom: 1rem; color: #004aad; letter-spacing: 1px;
     }
-    textarea, input {
-      width: 100%; padding: 12px; font-size: 14px;
-      border: 2px solid #ccc; border-radius: 10px; margin-bottom: 1rem;
+    .options { display: flex; justify-content: center; gap: 18px; margin-bottom: 12px; }
+    .options label { font-size: 15px; cursor: pointer; }
+    .lang-selector { display: flex; justify-content: center; gap: 12px; margin-bottom: 8px; }
+    .lang-selector label { font-size: 14px; cursor: pointer; }
+    input, textarea, select {
+      width: 100%; padding: 13px; font-size: 14.5px;
+      border: 2px solid #d6e0ef; border-radius: 9px; margin-bottom: 1rem;
+      background: #f7faff;
+      transition: border 0.25s;
     }
-    textarea { resize: vertical; min-height: 120px; }
+    input:focus, textarea:focus, select:focus { border-color: #2F80ED; outline: none; }
+    textarea { resize: vertical; min-height: 80px; }
+    .msg-preview {
+      background: #eef7fe;
+      border: 1.5px dashed #38a1f6;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.2rem;
+      text-align: left;
+      font-size: 15px;
+      min-height: 120px;
+      white-space: pre-line;
+      color: #174279;
+    }
+    .msg-preview strong {
+      color: #0d53b4;
+      font-weight: 600;
+    }
     button {
-      width: 100%; padding: 12px;
-      background-color: #25D366; color: white; border: none;
-      font-size: 15px; font-weight: 600; border-radius: 10px;
-      cursor: pointer; transition: 0.3s;
+      width: 100%;
+      padding: 13px;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 11px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #b0edc4;
+      transition: 0.25s;
+      margin-bottom: 5px;
     }
     button:hover { background-color: #1ebc57; }
-    .footer { margin-top: 1rem; font-size: 12px; color: #555; }
-    .lang-selector {
-      display: flex; justify-content: center; gap: 15px; margin-bottom: 1rem;
+    .footer { margin-top: 1.5rem; font-size: 12px; color: #555; }
+    .btn-row {
+      display: flex; gap: 10px; margin-bottom: 10px;
     }
-    .lang-selector label { font-size: 14px; cursor: pointer; }
+    @media (max-width: 500px) {
+      .container { padding: 1rem; }
+      .logo { width: 70px; }
+      h1 { font-size: 19px; }
+      .msg-preview { font-size: 13.5px; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="https://i.imgur.com/BkBVuWW.png" alt="KarimTools Logo" class="logo" />
-    <h1>Broadcast WhatsApp Message</h1>
-    <textarea id="numbers" placeholder="Enter phone numbers separated by commas (e.g. 905123456789,962781234567)"></textarea>
+    <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Food Brand Logo" class="logo" />
+    <h1>WhatsApp Broadcast Sender</h1>
+
+    <div class="options">
+      <label><input type="radio" name="sendtype" value="single" checked /> Single Contact</label>
+      <label><input type="radio" name="sendtype" value="multi" /> Multiple Contacts</label>
+    </div>
+
+    <input type="text" id="phoneInput" placeholder="Enter phone number (e.g. 905123456789)" />
+    <textarea id="phonesInput" style="display:none;" placeholder="Enter numbers, comma or newline separated"></textarea>
+
     <div class="lang-selector">
       <label><input type="radio" name="lang" value="en" checked /> 🇬🇧 English</label>
       <label><input type="radio" name="lang" value="ar" /> 🇸🇦 العربية</label>
       <label><input type="radio" name="lang" value="tr" /> 🇹🇷 Türkçe</label>
     </div>
-    <textarea id="message"></textarea>
+
+    <div class="msg-preview" id="msgPreview"></div>
+
+    <div class="btn-row">
+      <button style="background:#0a70c9;" onclick="copyPreviewToBox()">Use This Message</button>
+      <button style="background:#f8ba37;color:#353535;" onclick="resetForm()">Reset</button>
+    </div>
+
+    <textarea id="messageBox" placeholder="Edit your message here before sending..."></textarea>
     <button onclick="sendMessages()">📤 Send via WhatsApp Web</button>
     <div class="footer">&copy; 2025 KarimTools - Powered by ChatGPT 🚀</div>
   </div>
   <script>
-    const messages = {
-      en: `Hello 👋
-My name is Karim,
-Sales Operations at EUROSWEET GIDA LTD. ŞTİ. (Istanbul – Turkey).
-We specialize in producing high-quality snacks such as:
-🍪 Croissants, Cakes, Biscuits, Donuts, Jelly, and Wafers.
-We're always eager to connect with reliable partners and explore new markets together. 🤝
-If you are interested, I would be happy to share our catalog, price list, and discuss how we can work together.
+    // رسائل افتراضية مع التنسيق (HTML)
+    const msgTemplates = {
+      en: `<strong>Hello 👋</strong>
+My name is <strong>Karim</strong>,
+<strong>Sales Operations at EUROSWEET GIDA LTD. ŞTİ. (Istanbul – Turkey).</strong>
+We specialize in producing <strong>high-quality snacks</strong> such as:
+🍪 <strong>Croissants, Cakes, Biscuits, Donuts, Jelly, and Wafers.</strong>
+We're always eager to connect with <strong>reliable partners</strong> and explore new markets together. 🤝
+If you are interested, I would be happy to share our <strong>catalog</strong>, <strong>price list</strong>, and discuss how we can work together.
 Looking forward to your reply!
 Best regards,
 Karim
-📱 +90 552 080 29 16
-📧 karim@fmcgtrade.com.tr`,
-      ar: `مرحبًا 👋
-أنا كريم، مسؤول عمليات المبيعات في شركة EUROSWEET GIDA LTD. ŞTİ. (إسطنبول - تركيا).
-نحن متخصصون في إنتاج سناكات عالية الجودة مثل:
-🍪 الكرواسون، الكيك، البسكويت، الدونات، الجيلي، والويفر.
-نسعى دائمًا للتواصل مع شركاء موثوقين واستكشاف أسواق جديدة معًا 🤝
-إذا كنت مهتمًا، يسعدني أن أرسل لك الكتالوج وقائمة الأسعار، ومناقشة فرص التعاون المشترك.
+📱 <strong>+90 552 080 29 16</strong>
+📧 <strong>karim@fmcgtrade.com.tr</strong>`,
+      ar: `<strong>مرحبًا 👋</strong>
+أنا كريم، <strong>مسؤول عمليات المبيعات</strong> في شركة EUROSWEET GIDA LTD. ŞTİ. (إسطنبول - تركيا).
+نحن متخصصون في إنتاج <strong>سناكات عالية الجودة</strong> مثل:
+🍪 <strong>الكرواسون، الكيك، البسكويت، الدونات، الجيلي، والويفر.</strong>
+نسعى دائمًا للتواصل مع <strong>شركاء موثوقين</strong> واستكشاف أسواق جديدة معًا 🤝
+إذا كنت مهتمًا، يسعدني أن أرسل لك <strong>الكتالوج</strong> و<strong>قائمة الأسعار</strong>، ومناقشة فرص التعاون المشترك.
 بانتظار ردكم الكريم!
 أطيب التحيات،
 كريم
-📱 +90 552 080 29 16
-📧 karim@fmcgtrade.com.tr`,
-      tr: `Merhaba 👋
+📱 <strong>+90 552 080 29 16</strong>
+📧 <strong>karim@fmcgtrade.com.tr</strong>`,
+      tr: `<strong>Merhaba 👋</strong>
 Ben Karim,
-EUROSWEET GIDA LTD. ŞTİ.'de Satış Operasyonları (İstanbul – Türkiye).
-Aşağıdaki yüksek kaliteli atıştırmalıkları üretiyoruz:
-🍪 Kruvasan, Kek, Bisküvi, Donut, Jöle ve Gofret.
-Her zaman güvenilir ortaklarla bağlantı kurmak ve yeni pazarları birlikte keşfetmek isteriz. 🤝
-Eğer ilgilenirseniz, kataloğumuzu ve fiyat listemizi paylaşabilir, olası iş birliğini konuşabiliriz.
+<strong>EUROSWEET GIDA LTD. ŞTİ.'de Satış Operasyonları</strong> (İstanbul – Türkiye).
+Aşağıdaki <strong>yüksek kaliteli atıştırmalıkları</strong> üretiyoruz:
+🍪 <strong>Kruvasan, Kek, Bisküvi, Donut, Jöle ve Gofret.</strong>
+Her zaman <strong>güvenilir ortaklarla</strong> bağlantı kurmak ve yeni pazarları birlikte keşfetmek isteriz. 🤝
+Eğer ilgilenirseniz, <strong>kataloğumuzu</strong> ve <strong>fiyat listemizi</strong> paylaşabilir, olası iş birliğini konuşabiliriz.
 Cevabınızı dört gözle bekliyorum!
 Saygılarımla,
 Karim
-📱 +90 552 080 29 16
-📧 karim@fmcgtrade.com.tr`
+📱 <strong>+90 552 080 29 16</strong>
+📧 <strong>karim@fmcgtrade.com.tr</strong>`
     };
 
+    function setPreview(lang) {
+      const preview = document.getElementById('msgPreview');
+      preview.innerHTML = msgTemplates[lang];
+      preview.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
+      preview.style.textAlign = (lang === 'ar') ? 'right' : 'left';
+    }
+
     document.querySelectorAll('input[name="lang"]').forEach(radio => {
-      radio.addEventListener('change', () => {
-        const lang = document.querySelector('input[name="lang"]:checked').value;
-        document.getElementById("message").value = messages[lang];
-        document.getElementById("message").style.direction = lang === 'ar' ? 'rtl' : 'ltr';
+      radio.addEventListener('change', function() {
+        setPreview(this.value);
+        document.getElementById("messageBox").value = "";
+        document.getElementById("messageBox").placeholder = "Edit your message here before sending...";
       });
     });
 
     window.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("message").value = messages.en;
+      setPreview("en");
+    });
+
+    function copyPreviewToBox() {
+      const lang = document.querySelector('input[name="lang"]:checked').value;
+      // إزالة جميع الوسوم HTML عند نسخها لمربع الرسالة
+      document.getElementById("messageBox").value = msgTemplates[lang].replace(/<[^>]+>/g, "");
+    }
+
+    function resetForm() {
+      document.getElementById("phoneInput").value = "";
+      document.getElementById("phonesInput").value = "";
+      setPreview("en");
+      document.querySelector('input[name="lang"][value="en"]').checked = true;
+      document.getElementById("messageBox").value = "";
+      document.querySelector('input[name="sendtype"][value="single"]').checked = true;
+      document.getElementById("phoneInput").style.display = "";
+      document.getElementById("phonesInput").style.display = "none";
+    }
+
+    // تغيير بين single/multi
+    document.querySelectorAll('input[name="sendtype"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (this.value === "multi") {
+          document.getElementById("phoneInput").style.display = "none";
+          document.getElementById("phonesInput").style.display = "";
+        } else {
+          document.getElementById("phoneInput").style.display = "";
+          document.getElementById("phonesInput").style.display = "none";
+        }
+      });
     });
 
     function sendMessages() {
-      const rawNumbers = document.getElementById("numbers").value;
-      const message = encodeURIComponent(document.getElementById("message").value.trim());
-      if (!rawNumbers || !message) {
-        alert("Please enter phone numbers and a message.");
-        return;
+      const sendType = document.querySelector('input[name="sendtype"]:checked').value;
+      let phones = [];
+      if (sendType === "multi") {
+        const raw = document.getElementById("phonesInput").value;
+        phones = raw.split(/[\n,]+/).map(p => p.trim()).filter(p => /^\\d{8,15}$/.test(p));
+      } else {
+        const phone = document.getElementById("phoneInput").value.trim();
+        if (/^\\d{8,15}$/.test(phone)) phones = [phone];
       }
-      const phones = rawNumbers.split(',').map(p => p.trim()).filter(p => /^\\d{8,15}$/.test(p));
-      if (phones.length === 0) {
-        alert("No valid phone numbers found.");
+      const msg = document.getElementById("messageBox").value.trim();
+      if (phones.length === 0 || !msg) {
+        alert("Please enter valid phone number(s) and message.");
         return;
       }
       let delay = 0;
       phones.forEach(phone => {
         setTimeout(() => {
-          const url = `https://web.whatsapp.com/send?phone=${phone}&text=${message}`;
+          const url = `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`;
           window.open(url, '_blank');
         }, delay);
         delay += 2000;
