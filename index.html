@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KARIM | WhatsApp Broadcast</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
       background: linear-gradient(135deg, #004aad, #0acffe);
       display: flex; align-items: center; justify-content: center;
       height: 100vh; margin: 0;
@@ -21,7 +21,7 @@
       text-align: center;
     }
     .karim-logo {
-      font-family: 'Orbitron', 'Poppins', sans-serif;
+      font-family: 'Cairo', 'Orbitron', 'Open Sans', sans-serif;
       font-size: 2.8rem;
       font-weight: 700;
       letter-spacing: 10px;
@@ -43,13 +43,19 @@
     .lang-selector { display: flex; justify-content: center; gap: 12px; margin-bottom: 8px; }
     .lang-selector label { font-size: 14px; cursor: pointer; }
     input, textarea {
-      width: 100%; padding: 13px; font-size: 14.5px;
+      width: 100%; padding: 13px; font-size: 15.5px;
       border: 2px solid #d6e0ef; border-radius: 9px; margin-bottom: 1rem;
       background: #f7faff;
       transition: border 0.25s;
+      font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
     }
     input:focus, textarea:focus { border-color: #2F80ED; outline: none; }
-    textarea { resize: vertical; min-height: 100px; }
+    textarea {
+      resize: vertical;
+      min-height: 250px;
+      max-height: 600px;
+      line-height: 1.7;
+    }
     button {
       width: 100%;
       padding: 13px;
@@ -70,6 +76,7 @@
       .container { padding: 1rem; }
       .karim-logo { font-size: 1.5rem; letter-spacing: 5px; }
       h1 { font-size: 16px; }
+      textarea { min-height: 180px; }
     }
   </style>
 </head>
@@ -97,11 +104,60 @@
     <div class="footer">&copy; 2025 KARIM | Powered by ChatGPT 🚀</div>
   </div>
   <script>
-    // رسائل افتراضية منظمة وجميلة لكل لغة
     const msgTemplates = {
-      en: `Hello 👋\n\nMy name is Karim,\nSales Operations at EUROSWEET GIDA LTD. ŞTİ. (Istanbul – Turkey).\n\nWe specialize in producing high-quality snacks such as:\n🍪 Croissants, Cakes, Biscuits, Donuts, Jelly, and Wafers.\n\nWe're always eager to connect with reliable partners and explore new markets together. 🤝\n\nIf you are interested, I would be happy to share our catalog, price list, and discuss how we can work together.\n\nLooking forward to your reply!\n\nBest regards,\nKarim\n📱 +90 552 080 29 16\n📧 karim@fmcgtrade.com.tr`,
-      ar: `مرحبًا 👋\n\nأنا كريم، مسؤول عمليات المبيعات في شركة EUROSWEET GIDA LTD. ŞTİ. (إسطنبول - تركيا).\n\nنحن متخصصون في إنتاج سناكات عالية الجودة مثل:\n🍪 الكرواسون، الكيك، البسكويت، الدونات، الجيلي، والويفر.\n\nنسعى دائمًا للتواصل مع شركاء موثوقين واستكشاف أسواق جديدة معًا 🤝\n\nإذا كنت مهتمًا، يسعدني أن أرسل لك الكتالوج وقائمة الأسعار، ومناقشة فرص التعاون المشترك.\n\nبانتظار ردكم الكريم!\n\nأطيب التحيات،\nكريم\n📱 +90 552 080 29 16\n📧 karim@fmcgtrade.com.tr`,
-      tr: `Merhaba 👋\n\nBen Karim,\nEUROSWEET GIDA LTD. ŞTİ.'de Satış Operasyonları (İstanbul – Türkiye).\n\nAşağıdaki yüksek kaliteli atıştırmalıkları üretiyoruz:\n🍪 Kruvasan, Kek, Bisküvi, Donut, Jöle ve Gofret.\n\nHer zaman güvenilir ortaklarla bağlantı kurmak ve yeni pazarları birlikte keşfetmek isteriz. 🤝\n\nEğer ilgilenirseniz, kataloğumuzu ve fiyat listemizi paylaşabilir, olası iş birliğini konuşabiliriz.\n\nCevabınızı dört gözle bekliyorum!\n\nSaygılarımla,\nKarim\n📱 +90 552 080 29 16\n📧 karim@fmcgtrade.com.tr`
+      en: `Hello 👋
+
+My name is Karim,
+Sales Operations at EUROSWEET GIDA LTD. ŞTİ. (Istanbul – Turkey).
+
+We specialize in producing high-quality snacks such as:
+🍪 Croissants, Cakes, Biscuits, Donuts, Jelly, and Wafers.
+
+We're always eager to connect with reliable partners and explore new markets together. 🤝
+
+If you are interested, I would be happy to share our catalog, price list, and discuss how we can work together.
+
+Looking forward to your reply!
+
+Best regards,
+Karim
+📱 +90 552 080 29 16
+📧 karim@fmcgtrade.com.tr`,
+      ar: `مرحبًا 👋
+
+أنا كريم، مسؤول عمليات المبيعات في شركة EUROSWEET GIDA LTD. ŞTİ. (إسطنبول - تركيا).
+
+نحن متخصصون في إنتاج سناكات عالية الجودة مثل:
+🍪 الكرواسون، الكيك، البسكويت، الدونات، الجيلي، والويفر.
+
+نسعى دائمًا للتواصل مع شركاء موثوقين واستكشاف أسواق جديدة معًا 🤝
+
+إذا كنت مهتمًا، يسعدني أن أرسل لك الكتالوج وقائمة الأسعار، ومناقشة فرص التعاون المشترك.
+
+بانتظار ردكم الكريم!
+
+أطيب التحيات،
+كريم
+📱 +90 552 080 29 16
+📧 karim@fmcgtrade.com.tr`,
+      tr: `Merhaba 👋
+
+Ben Karim,
+EUROSWEET GIDA LTD. ŞTİ.'de Satış Operasyonları (İstanbul – Türkiye).
+
+Aşağıdaki yüksek kaliteli atıştırmalıkları üretiyoruz:
+🍪 Kruvasan, Kek, Bisküvi, Donut, Jöle ve Gofret.
+
+Her zaman güvenilir ortaklarla bağlantı kurmak ve yeni pazarları birlikte keşfetmek isteriz. 🤝
+
+Eğer ilgilenirseniz, kataloğumuzu ve fiyat listemizi paylaşabilir, olası iş birliğini konuşabiliriz.
+
+Cevabınızı dört gözle bekliyorum!
+
+Saygılarımla,
+Karim
+📱 +90 552 080 29 16
+📧 karim@fmcgtrade.com.tr`
     };
 
     // تغيير الرسالة الافتراضية مع تغيير اللغة
