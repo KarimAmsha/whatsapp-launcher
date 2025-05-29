@@ -8,80 +8,80 @@
   <style>
     body {
       font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
-      background: linear-gradient(135deg, #004aad 0%, #0acffe 100%);
+      background: linear-gradient(135deg, #0490ce 0%, #59e3ff 100%);
       min-height: 100vh; margin: 0;
       display: flex; align-items: center; justify-content: center;
     }
     .pro-box {
       background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 32px #b7eaff44;
-      padding: 30px 18px 22px 18px;
+      border-radius: 28px;
+      box-shadow: 0 6px 36px #a7eaff30;
+      padding: 32px 19px 22px 19px;
       width: 100%; max-width: 430px;
       position: relative;
     }
     .karim-logo {
       font-family: 'Cairo', 'Open Sans', sans-serif;
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: 900;
-      letter-spacing: 5px;
-      color: #004aad;
-      margin-bottom: 0.6rem;
-      background: linear-gradient(90deg, #004aad, #38e8be, #49c0fc);
+      letter-spacing: 6px;
+      color: #10b7d4;
+      margin-bottom: 0.4rem;
+      text-align: center;
+      background: linear-gradient(90deg, #0490ce, #10b7d4, #49c0fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-      text-align: center;
-      text-shadow: 2px 4px 18px #bee7fa22, 0 2px 6px #69a1ef11;
       user-select: none;
     }
     h1 {
-      font-size: 1.07rem; margin-bottom: 0.7rem; color: #1178e5;
+      font-size: 1.12rem; margin-bottom: 0.8rem; color: #107cb8;
       text-align: center; letter-spacing: 1px;
     }
-
     .radio-row {
       display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
-      gap: 4px; margin-bottom: 11px;
+      gap: 14px; margin-bottom: 13px;
     }
     .radio-row label {
-      font-size: 0.94em;
-      padding: 5px 10px;
-      border-radius: 7px;
-      border: 1.5px solid #e1e8f1;
-      background: #f8fafd;
-      color: #287fd7;
-      font-weight: 600;
+      font-size: .96em;
+      display: flex; align-items: center; gap: 6px;
       cursor: pointer;
-      margin-bottom: 0;
-      display: flex; align-items: center; gap: 3px;
-      transition: background .15s, color .15s, border .15s;
-      min-width: 35px;
+      padding: 0 1px;
+      font-weight: 600;
       user-select: none;
+      transition: color .18s;
     }
     .radio-row input[type="radio"] {
-      display: none;
+      accent-color: #10b7d4;
+      width: 19px; height: 19px;
+      margin: 0 3px 0 0;
+      vertical-align: middle;
+      cursor: pointer;
+      transition: accent-color .18s;
+    }
+    .radio-row input[type="radio"]:focus {
+      outline: 2px solid #49c0fc;
     }
     .radio-row input[type="radio"]:checked + span {
-      background: #e3f6fc;
-      color: #0864ad;
-      border: 2px solid #49c0fc;
+      color: #10b7d4;
       font-weight: bold;
-      box-shadow: 0 0 8px #b5dfff55;
+      letter-spacing: .2px;
     }
 
     textarea, input[type="text"] {
-      width: 100%; font-size: 15px; border-radius: 9px;
-      border: 2px solid #d6e0ef; margin-bottom: 1rem; background: #f7faff;
-      padding: 11px 10px; transition: border 0.23s;
+      width: 100%; font-size: 15px; border-radius: 12px;
+      border: 1.6px solid #d8e2ea; margin-bottom: 1.1rem; background: #fafdff;
+      padding: 13px 12px; transition: border 0.17s;
       font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
+      box-shadow: none;
+      outline: none;
+      resize: vertical;
     }
-    textarea:focus, input[type="text"]:focus { border-color: #2F80ED; outline: none; }
+    textarea:focus, input[type="text"]:focus { border-color: #10b7d4; }
     textarea {
-      min-height: 110px; max-height: 320px; line-height: 1.7;
-      transition: min-height .18s;
-      margin-bottom: 9px;
+      min-height: 95px; max-height: 260px; line-height: 1.7;
+      margin-bottom: 11px;
     }
     .numbers-list {
       display: flex; flex-direction: column; gap: 3px; font-size: 12.5px;
@@ -94,31 +94,32 @@
       margin-bottom: 6px; text-align: center; letter-spacing: .5px;
     }
     .counter-bar {
-      text-align: center; margin-bottom: 6px; color: #004aad;
+      text-align: center; margin-bottom: 6px; color: #0490ce;
       font-size: 12px; font-weight: 600;
     }
     .actions-row {
-      display: flex; justify-content: space-between; gap: 7px; margin-bottom: 7px;
+      display: flex; justify-content: space-between; gap: 8px; margin-bottom: 9px;
     }
     .actions-row button {
       flex: 1 1 0; padding: 10px 0; border-radius: 8px; font-size: 14px; border: none;
-      background: #f7faff; color: #20609a; font-weight: bold; cursor: pointer; transition: 0.19s;
-      border: 2px solid #b9dbf7; box-shadow: 0 1px 6px #b0e0ff11;
+      background: #fafdff; color: #127096; font-weight: bold; cursor: pointer; transition: 0.16s;
+      border: 2px solid #c7eaf9; box-shadow: none;
     }
     .actions-row button:disabled { opacity: 0.5; cursor: not-allowed;}
     .actions-row .next { background: #25D366; color: #fff; border: none;}
-    .actions-row .open { background: #004aad; color: #fff; border: none;}
+    .actions-row .open { background: #10b7d4; color: #fff; border: none;}
     .actions-row .skip { background: #ffe4b3; color: #b67a10;}
     .actions-row .prev { background: #eee; color: #333; border: 1.5px solid #d8dde6;}
     .footer {
-      margin-top: 1.2rem; font-size: 11.3px; color: #555; text-align: center; letter-spacing: 1px;
+      margin-top: 1.25rem; font-size: 12px; color: #555; text-align: center; letter-spacing: 1px;
     }
     @media (max-width: 500px) {
       .pro-box { padding: 8px 1px 9px 1px; }
-      .karim-logo { font-size: .96rem; letter-spacing: 2px;}
-      h1 { font-size: .97rem;}
-      textarea { min-height: 65px;}
-      .radio-row label { font-size: 0.87em; min-width: 30px; padding: 4px 6px; }
+      .karim-logo { font-size: 1.12rem; letter-spacing: 2.2px;}
+      h1 { font-size: 1.01rem;}
+      textarea { min-height: 62px;}
+      .radio-row label { font-size: .90em; }
+      .radio-row { gap: 8px;}
     }
   </style>
 </head>
