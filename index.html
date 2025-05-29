@@ -115,6 +115,23 @@
       min-height: 88px; max-height: 220px; line-height: 1.7;
       margin-bottom: 10px;
     }
+    .numbers-list {
+      display: flex; flex-direction: column; gap: 2.5px; font-size: 12.5px;
+      background: #f6faff;
+      border-radius: 6px; padding: 4px 7px 3px 8px; margin-bottom: 9px;
+      max-height: 75px; overflow-y: auto; color: #397bbf;
+      border: 1px solid #e5f2fa;
+    }
+    .numbers-list div {
+      padding: 1.5px 5px;
+      transition: background .16s, color .16s;
+    }
+    .numbers-list .active {
+      background: #beeafd;
+      border-radius: 5px;
+      font-weight: bold;
+      color: #1266a9;
+    }
     .current-label {
       font-size: 14px; font-weight: bold; color: #1178e5;
       margin-bottom: 6px; text-align: center; letter-spacing: .5px;
@@ -145,6 +162,7 @@
       h1 { font-size: 0.98rem;}
       textarea { min-height: 60px;}
       .radio-material { font-size: 11px; }
+      .numbers-list { font-size: 11px;}
     }
   </style>
 </head>
@@ -169,6 +187,8 @@
     <textarea id="numbersInput" placeholder="Paste numbers, comma or newline separated"></textarea>
     <div class="current-label" id="currentLabel" style="display:none;"></div>
     <div class="counter-bar" id="counter"></div>
+    <!-- قائمة الأرقام النشطة -->
+    <div class="numbers-list" id="numbersList" style="display:none;"></div>
     <!-- الرسالة -->
     <textarea id="messageInput" placeholder="The message will appear here (auto by language) and you can edit before sending"></textarea>
     <!-- الأزرار -->
@@ -269,7 +289,7 @@ Departamento de Ventas`
     function showNumbersList() {
       let html = "";
       numbers.forEach((n, i) => {
-        html += `<div${i===index?' style="background:#beeafd;border-radius:5px;"':''}>${i+1}. ${n}</div>`;
+        html += `<div class="${i===index ? 'active' : ''}">${i+1}. ${n}</div>`;
       });
       document.getElementById("numbersList").innerHTML = html;
     }
