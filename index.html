@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KARIM | WhatsApp Sequential Pro Sender</title>
+  <title>KARIM | WhatsApp Pro Sender (Multi-Lang)</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -17,7 +17,7 @@
       border-radius: 20px;
       box-shadow: 0 8px 32px #9bcef766;
       padding: 34px 30px 28px 30px;
-      width: 100%; max-width: 430px;
+      width: 100%; max-width: 450px;
       position: relative;
     }
     .karim-logo {
@@ -32,14 +32,26 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
+      text-align: center;
       text-shadow: 2px 4px 18px #bee7fa99, 0 2px 6px #69a1ef22;
       user-select: none;
-      text-align:center;
     }
     h1 {
       font-size: 1.25rem; margin-bottom: 1.2rem; color: #004aad;
       text-align: center;
       letter-spacing: 1px;
+    }
+    .lang-selector {
+      display: flex; justify-content: center; gap: 13px; margin-bottom: 0.5rem;
+    }
+    .lang-selector label {
+      font-size: 14px; cursor: pointer; padding: 2px 7px;
+      border-radius: 6px;
+      transition: background .18s;
+    }
+    .lang-selector input:checked + span {
+      font-weight: bold; color: #0a71d9;
+      background: #e4f2ff;
     }
     textarea, input {
       width: 100%; font-size: 15px; border-radius: 9px;
@@ -48,7 +60,10 @@
       font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
     }
     textarea:focus, input:focus { border-color: #2F80ED; outline: none; }
-    textarea { min-height: 90px; max-height: 350px; line-height: 1.7; }
+    textarea {
+      min-height: 160px; max-height: 400px; line-height: 1.7;
+      transition: min-height .2s;
+    }
     .numbers-list {
       display: flex; flex-direction: column; gap: 4px; font-size: 13.5px;
       background: #f0f8ff;
@@ -92,22 +107,27 @@
       letter-spacing: 1px;
     }
     @media (max-width: 600px) {
-      .pro-box { padding: 14px 6px 14px 6px; }
+      .pro-box { padding: 13px 3px 13px 3px; }
       .karim-logo { font-size: 1.2rem; letter-spacing: 3px; }
       h1 { font-size: 1rem; }
       .numbers-list { font-size: 12px; }
-      textarea { min-height: 65px; }
+      textarea { min-height: 80px; }
     }
   </style>
 </head>
 <body>
   <div class="pro-box">
     <div class="karim-logo">KARIM</div>
-    <h1>WhatsApp Sequential Pro Sender</h1>
+    <h1>WhatsApp Pro Sequential Sender</h1>
+    <div class="lang-selector" id="langSelector">
+      <label><input type="radio" name="lang" value="en" checked /><span>🇬🇧 English</span></label>
+      <label><input type="radio" name="lang" value="ar" /><span>🇸🇦 العربية</span></label>
+      <label><input type="radio" name="lang" value="tr" /><span>🇹🇷 Türkçe</span></label>
+    </div>
     <textarea id="numbersInput" placeholder="Paste numbers, comma or newline separated"></textarea>
     <div class="current-label" id="currentLabel" style="display:none;"></div>
     <div class="counter-bar" id="counter"></div>
-    <textarea id="messageInput" placeholder="Type or edit your message here"></textarea>
+    <textarea id="messageInput" placeholder="Message will appear here (auto by language) and you can edit before sending"></textarea>
     <div class="actions-row">
       <button onclick="gotoPrev()" class="prev" id="btnPrev" title="Previous">&larr; Prev</button>
       <button onclick="skip()" class="skip" id="btnSkip" title="Skip">Skip</button>
@@ -121,10 +141,67 @@
     let numbers = [];
     let index = 0;
     let skipped = [];
+    let lastLang = "en";
+
+    const msgTemplates = {
+      en: `Hello 👋
+
+My name is Karim,
+Sales Operations at EUROSWEET GIDA LTD. ŞTİ. (Istanbul – Turkey).
+
+We specialize in producing high-quality snacks such as:
+🍪 Croissants, Cakes, Biscuits, Donuts, Jelly, and Wafers.
+
+We're always eager to connect with reliable partners and explore new markets together. 🤝
+
+If you are interested, I would be happy to share our catalog, price list, and discuss how we can work together.
+
+Looking forward to your reply!
+
+Best regards,
+Karim
+📱 +90 552 080 29 16
+📧 karim@fmcgtrade.com.tr`,
+      ar: `مرحبًا 👋
+
+أنا كريم، مسؤول عمليات المبيعات في شركة EUROSWEET GIDA LTD. ŞTİ. (إسطنبول - تركيا).
+
+نحن متخصصون في إنتاج سناكات عالية الجودة مثل:
+🍪 الكرواسون، الكيك، البسكويت، الدونات، الجيلي، والويفر.
+
+نسعى دائمًا للتواصل مع شركاء موثوقين واستكشاف أسواق جديدة معًا 🤝
+
+إذا كنت مهتمًا، يسعدني أن أرسل لك الكتالوج وقائمة الأسعار، ومناقشة فرص التعاون المشترك.
+
+بانتظار ردكم الكريم!
+
+أطيب التحيات،
+كريم
+📱 +90 552 080 29 16
+📧 karim@fmcgtrade.com.tr`,
+      tr: `Merhaba 👋
+
+Ben Karim,
+EUROSWEET GIDA LTD. ŞTİ.'de Satış Operasyonları (İstanbul – Türkiye).
+
+Aşağıdaki yüksek kaliteli atıştırmalıkları üretiyoruz:
+🍪 Kruvasan, Kek, Bisküvi, Donut, Jöle ve Gofret.
+
+Her zaman güvenilir ortaklarla bağlantı kurmak ve yeni pazarları birlikte keşfetmek isteriz. 🤝
+
+Eğer ilgilenirseniz, kataloğumuzu ve fiyat listemizi paylaşabilir, olası iş birliğini konuşabiliriz.
+
+Cevabınızı dört gözle bekliyorum!
+
+Saygılarımla,
+Karim
+📱 +90 552 080 29 16
+📧 karim@fmcgtrade.com.tr`
+    };
 
     function getNumbers() {
       const raw = document.getElementById("numbersInput").value;
-      return raw.split(/[\n,]+/).map(p => p.replace(/\\D/g, "")).filter(p => p.length >= 8);
+      return raw.split(/[\n,]+/).map(p => p.replace(/\D/g, "")).filter(p => p.length >= 8);
     }
 
     function showNumbersList() {
@@ -137,7 +214,6 @@
 
     function updateUI() {
       numbers = getNumbers();
-      // فلترة الأرقام التي تم تخطيها
       let left = numbers.length - skipped.length;
       document.getElementById("counter").textContent = numbers.length
         ? `Contact ${Math.min(index+1, numbers.length)} / ${numbers.length} (${left} remaining)`
@@ -179,15 +255,33 @@
       window.open(url, "_blank");
     }
 
+    // اللغات
+    document.querySelectorAll('input[name="lang"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const lang = this.value;
+        lastLang = lang;
+        const messageInput = document.getElementById("messageInput");
+        messageInput.value = msgTemplates[lang];
+        messageInput.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
+        messageInput.style.textAlign = (lang === 'ar') ? 'right' : 'left';
+      });
+    });
+
+    // تحميل الرسالة الافتراضية عند فتح الصفحة
+    window.addEventListener("DOMContentLoaded", () => {
+      const messageInput = document.getElementById("messageInput");
+      messageInput.value = msgTemplates["en"];
+      messageInput.style.direction = 'ltr';
+      messageInput.style.textAlign = 'left';
+      updateUI();
+    });
+
     // Shortcuts: arrow keys for next/prev
     window.addEventListener("keydown", e => {
       if(e.target.tagName.toLowerCase()==="textarea") return;
       if(e.key==="ArrowRight" || e.key==="Enter") gotoNext();
       if(e.key==="ArrowLeft") gotoPrev();
     });
-
-    // Init
-    updateUI();
   </script>
 </body>
 </html>
