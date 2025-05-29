@@ -3,39 +3,145 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KARIM | WhatsApp Pro Sender (Full Options)</title>
+  <title>KARIM | WhatsApp Sender PRO</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Open Sans', 'Cairo', Arial, sans-serif; background: linear-gradient(135deg, #004aad, #0acffe); min-height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center;}
-    .pro-box { background: #fff; border-radius: 20px; box-shadow: 0 8px 32px #9bcef766; padding: 34px 30px 28px 30px; width: 100%; max-width: 500px; position: relative;}
-    .karim-logo { font-family: 'Cairo', 'Orbitron', 'Open Sans', sans-serif; font-size: 2.1rem; font-weight: 900; letter-spacing: 8px; color: #004aad; margin-bottom: 0.7rem; background: linear-gradient(90deg, #004aad, #38e8be, #49c0fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; text-align: center; text-shadow: 2px 4px 18px #bee7fa99, 0 2px 6px #69a1ef22; user-select: none;}
-    h1 { font-size: 1.25rem; margin-bottom: 1.2rem; color: #004aad; text-align: center; letter-spacing: 1px;}
-    .lang-selector, .template-selector, .app-selector { display: flex; justify-content: center; gap: 9px; margin-bottom: 8px; flex-wrap: wrap;}
-    .lang-selector label, .template-selector label, .app-selector label { font-size: 14px; cursor: pointer; padding: 2px 7px; border-radius: 6px; transition: background .18s;}
-    .lang-selector input:checked + span, .template-selector input:checked + span, .app-selector input:checked + span { font-weight: bold; color: #0a71d9; background: #e4f2ff;}
-    .template-selector label, .app-selector label { padding: 2px 10px; background: #f4f7fc; border: 1.3px solid #e1e8f1; margin-bottom: 3px; transition: background .19s, color .19s;}
-    .template-selector input:checked + span, .app-selector input:checked + span { background: #e6f2fa; color: #0a71d9; font-weight: bold; border-color: #6dc6f6;}
-    textarea, input { width: 100%; font-size: 15px; border-radius: 9px; border: 2px solid #d6e0ef; margin-bottom: 1rem; background: #f7faff; padding: 11px; transition: border 0.25s; font-family: 'Open Sans', 'Cairo', Arial, sans-serif;}
-    textarea:focus, input:focus { border-color: #2F80ED; outline: none;}
-    textarea { min-height: 170px; max-height: 420px; line-height: 1.7; transition: min-height .2s;}
-    .numbers-list { display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; background: #f0f8ff; border-radius: 8px; padding: 6px 7px 3px 8px; margin-bottom: 10px; max-height: 120px; overflow-y: auto; color: #397bbf;}
-    .current-label { font-size: 16px; font-weight: bold; color: #1178e5; margin-bottom: 8px; text-align: center; letter-spacing: 1px;}
-    .counter-bar { text-align: center; margin-bottom: 8px; color: #004aad; font-size: 13.5px; font-weight: 600;}
-    .actions-row { display: flex; justify-content: space-between; gap: 7px; margin-bottom: 8px;}
-    .actions-row button { flex: 1 1 0; padding: 11px 0; border-radius: 9px; font-size: 16px; border: none; background: #f7faff; color: #20609a; font-weight: bold; cursor: pointer; transition: 0.22s; border: 2px solid #b9dbf7; box-shadow: 0 1px 6px #b0e0ff11;}
+    body {
+      font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
+      background: linear-gradient(135deg, #004aad 0%, #0acffe 100%);
+      min-height: 100vh; margin: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pro-box {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px #b7eaff44;
+      padding: 34px 22px 28px 22px;
+      width: 100%; max-width: 410px;
+      position: relative;
+    }
+    .karim-logo {
+      font-family: 'Cairo', 'Open Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      color: #004aad;
+      margin-bottom: 0.7rem;
+      background: linear-gradient(90deg, #004aad, #38e8be, #49c0fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      text-align: center;
+      text-shadow: 2px 4px 18px #bee7fa33, 0 2px 6px #69a1ef22;
+      user-select: none;
+    }
+    h1 {
+      font-size: 1.1rem; margin-bottom: 1.1rem; color: #1178e5;
+      text-align: center; letter-spacing: 1px;
+    }
+    .lang-selector {
+      display: flex; justify-content: center; gap: 7px; margin-bottom: 13px; flex-wrap: wrap;
+    }
+    .lang-selector label {
+      cursor: pointer; padding: 5px 8px; border-radius: 6px; font-size: 17px;
+      transition: background .18s, font-weight .18s;
+      display: flex; align-items: center; gap: 4px;
+      border: 2px solid transparent;
+    }
+    .lang-selector input[type="radio"] { display: none; }
+    .lang-selector input:checked + span {
+      font-weight: bold; color: #1976D2; background: #e6f2fa; border-radius: 5px; border: 2px solid #52b2fd;
+      box-shadow: 0 0 8px #b5dfff44;
+      padding: 5px 10px;
+    }
+    .template-selector {
+      display: flex; justify-content: center; gap: 7px; margin-bottom: 13px; flex-wrap: wrap;
+    }
+    .template-selector label {
+      cursor: pointer; padding: 6px 10px; border-radius: 7px;
+      font-size: 15px; background: #f7fbff; color: #287fd7;
+      border: 1.6px solid #e2e9f3; margin-bottom: 4px;
+      font-weight: 600; display: flex; align-items: center; gap: 4px;
+      transition: border .18s, background .18s, color .18s;
+    }
+    .template-selector input[type="radio"] { display: none; }
+    .template-selector input:checked + span {
+      background: #e3f6fc; color: #0864ad; border: 2px solid #49c0fc;
+      box-shadow: 0 0 8px #b5dfff22;
+      font-weight: bold;
+    }
+    .app-selector {
+      display: flex; justify-content: center; gap: 9px; margin-bottom: 15px; flex-wrap: wrap;
+    }
+    .app-selector label {
+      cursor: pointer; padding: 7px 13px; border-radius: 8px;
+      font-size: 15px; background: #f8fafd; color: #235a7c;
+      border: 1.5px solid #e1e8f1; margin-bottom: 3px;
+      font-weight: 600; display: flex; align-items: center; gap: 6px;
+      transition: border .18s, background .18s, color .18s;
+    }
+    .app-selector input[type="radio"] { display: none; }
+    .app-selector input:checked + span {
+      background: #d5f4ed; color: #0a8368; border: 2px solid #37dca8;
+      font-weight: bold;
+      box-shadow: 0 0 10px #37dca922;
+    }
+    textarea, input {
+      width: 100%; font-size: 15px; border-radius: 10px;
+      border: 2px solid #d6e0ef; margin-bottom: 1rem; background: #f7faff;
+      padding: 13px 12px; transition: border 0.25s;
+      font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
+      resize: vertical;
+    }
+    textarea:focus, input:focus { border-color: #2F80ED; outline: none; }
+    textarea {
+      min-height: 120px; max-height: 320px; line-height: 1.7;
+      transition: min-height .2s;
+    }
+    .numbers-list {
+      display: flex; flex-direction: column; gap: 3px; font-size: 13px;
+      background: #f0f8ff;
+      border-radius: 8px; padding: 6px 7px 3px 8px; margin-bottom: 9px;
+      max-height: 95px; overflow-y: auto; color: #397bbf;
+    }
+    .current-label {
+      font-size: 15px; font-weight: bold; color: #1178e5;
+      margin-bottom: 8px; text-align: center; letter-spacing: 1px;
+    }
+    .counter-bar {
+      text-align: center; margin-bottom: 8px; color: #004aad;
+      font-size: 13px; font-weight: 600;
+    }
+    .actions-row {
+      display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px;
+    }
+    .actions-row button {
+      flex: 1 1 0; padding: 10px 0; border-radius: 9px; font-size: 15px; border: none;
+      background: #f7faff; color: #20609a; font-weight: bold; cursor: pointer; transition: 0.22s;
+      border: 2px solid #b9dbf7; box-shadow: 0 1px 6px #b0e0ff11;
+    }
     .actions-row button:disabled { opacity: 0.5; cursor: not-allowed;}
     .actions-row .next { background: #25D366; color: #fff; border: none;}
     .actions-row .open { background: #004aad; color: #fff; border: none;}
     .actions-row .skip { background: #ffe4b3; color: #b67a10;}
     .actions-row .prev { background: #eee; color: #333; border: 1.5px solid #d8dde6;}
-    .footer { margin-top: 1.3rem; font-size: 12px; color: #555; text-align: center; letter-spacing: 1px;}
-    @media (max-width: 600px) { .pro-box { padding: 13px 3px 13px 3px;} .karim-logo { font-size: 1.2rem; letter-spacing: 3px;} h1 { font-size: 1rem;} .numbers-list { font-size: 12px;} textarea { min-height: 80px;} }
+    .footer {
+      margin-top: 1.3rem; font-size: 12px; color: #555; text-align: center; letter-spacing: 1px;
+    }
+    @media (max-width: 520px) {
+      .pro-box { padding: 10px 2px 14px 2px; }
+      .karim-logo { font-size: 1.05rem; letter-spacing: 3px;}
+      h1 { font-size: .98rem;}
+      textarea { min-height: 70px;}
+    }
   </style>
 </head>
 <body>
   <div class="pro-box">
     <div class="karim-logo">KARIM</div>
-    <h1>WhatsApp Pro Sequential Sender</h1>
+    <h1>WhatsApp Broadcast Sender</h1>
+    <!-- اللغات -->
     <div class="lang-selector" id="langSelector">
       <label><input type="radio" name="lang" value="en" checked /><span>🇬🇧 English</span></label>
       <label><input type="radio" name="lang" value="ar" /><span>🇸🇦 العربية</span></label>
@@ -43,21 +149,24 @@
       <label><input type="radio" name="lang" value="fr" /><span>🇫🇷 Français</span></label>
       <label><input type="radio" name="lang" value="es" /><span>🇪🇸 Español</span></label>
     </div>
+    <!-- قوالب الرسائل -->
     <div class="template-selector" id="templateSelector">
       <label><input type="radio" name="template" value="intro" checked /><span>📝 Sales Intro</span></label>
       <label><input type="radio" name="template" value="thanks" /><span>🙏 Thank You</span></label>
       <label><input type="radio" name="template" value="products" /><span>📦 Products Info</span></label>
     </div>
+    <!-- نوع الإرسال -->
     <div class="app-selector" id="appSelector">
       <label><input type="radio" name="wapp" value="web" checked /><span>💻 WhatsApp Web</span></label>
-      <label><input type="radio" name="wapp" value="webbiz" /><span>💼 WhatsApp Business Web</span></label>
       <label><input type="radio" name="wapp" value="mobile" /><span>📱 WhatsApp Mobile</span></label>
-      <label><input type="radio" name="wapp" value="mobilebiz" /><span>📱💼 WhatsApp Business Mobile</span></label>
     </div>
+    <!-- أرقام الإرسال -->
     <textarea id="numbersInput" placeholder="Paste numbers, comma or newline separated"></textarea>
     <div class="current-label" id="currentLabel" style="display:none;"></div>
     <div class="counter-bar" id="counter"></div>
+    <!-- الرسالة -->
     <textarea id="messageInput" placeholder="Message will appear here (auto by language & type) and you can edit before sending"></textarea>
+    <!-- الأزرار -->
     <div class="actions-row">
       <button onclick="gotoPrev()" class="prev" id="btnPrev" title="Previous">&larr; Prev</button>
       <button onclick="skip()" class="skip" id="btnSkip" title="Skip">Skip</button>
@@ -298,26 +407,15 @@ Departamento de Ventas`
       const msg = encodeURIComponent(document.getElementById("messageInput").value.trim());
       if (!msg) return alert("Please enter your message first.");
       if (!numbers[index]) return alert("No number selected.");
-      // نوع الإرسال:
       const app = document.querySelector('input[name="wapp"]:checked').value;
       let url = "";
-      switch(app) {
-        case "web":
-          url = `https://web.whatsapp.com/send?phone=${numbers[index]}&text=${msg}`;
-          break;
-        case "webbiz":
-          url = `https://web.whatsapp.com/send?phone=${numbers[index]}&text=${msg}`;
-          break;
-        case "mobile":
-          url = `https://wa.me/${numbers[index]}?text=${msg}`;
-          break;
-        case "mobilebiz":
-          url = `https://api.whatsapp.com/send?phone=${numbers[index]}&text=${msg}`;
-          break;
+      if (app === "web") {
+        url = `https://web.whatsapp.com/send?phone=${numbers[index]}&text=${msg}`;
+      } else {
+        url = `https://wa.me/${numbers[index]}?text=${msg}`;
       }
       window.open(url, "_blank");
     }
-    // اختيار اللغة أو القالب
     function updateMessageBox() {
       const lang = document.querySelector('input[name="lang"]:checked').value;
       const temp = document.querySelector('input[name="template"]:checked').value;
