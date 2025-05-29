@@ -16,109 +16,93 @@
       background: #fff;
       border-radius: 20px;
       box-shadow: 0 8px 32px #b7eaff44;
-      padding: 34px 22px 28px 22px;
-      width: 100%; max-width: 410px;
+      padding: 30px 18px 22px 18px;
+      width: 100%; max-width: 430px;
       position: relative;
     }
     .karim-logo {
       font-family: 'Cairo', 'Open Sans', sans-serif;
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 900;
-      letter-spacing: 6px;
+      letter-spacing: 5px;
       color: #004aad;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.6rem;
       background: linear-gradient(90deg, #004aad, #38e8be, #49c0fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
       text-align: center;
-      text-shadow: 2px 4px 18px #bee7fa33, 0 2px 6px #69a1ef22;
+      text-shadow: 2px 4px 18px #bee7fa22, 0 2px 6px #69a1ef11;
       user-select: none;
     }
     h1 {
-      font-size: 1.1rem; margin-bottom: 1.1rem; color: #1178e5;
+      font-size: 1.07rem; margin-bottom: 0.7rem; color: #1178e5;
       text-align: center; letter-spacing: 1px;
     }
-    .lang-selector {
-      display: flex; justify-content: center; gap: 7px; margin-bottom: 13px; flex-wrap: wrap;
+
+    .radio-row {
+      display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
+      gap: 4px; margin-bottom: 11px;
     }
-    .lang-selector label {
-      cursor: pointer; padding: 5px 8px; border-radius: 6px; font-size: 17px;
-      transition: background .18s, font-weight .18s;
-      display: flex; align-items: center; gap: 4px;
-      border: 2px solid transparent;
-    }
-    .lang-selector input[type="radio"] { display: none; }
-    .lang-selector input:checked + span {
-      font-weight: bold; color: #1976D2; background: #e6f2fa; border-radius: 5px; border: 2px solid #52b2fd;
-      box-shadow: 0 0 8px #b5dfff44;
+    .radio-row label {
+      font-size: 0.94em;
       padding: 5px 10px;
+      border-radius: 7px;
+      border: 1.5px solid #e1e8f1;
+      background: #f8fafd;
+      color: #287fd7;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 0;
+      display: flex; align-items: center; gap: 3px;
+      transition: background .15s, color .15s, border .15s;
+      min-width: 35px;
+      user-select: none;
     }
-    .template-selector {
-      display: flex; justify-content: center; gap: 7px; margin-bottom: 13px; flex-wrap: wrap;
+    .radio-row input[type="radio"] {
+      display: none;
     }
-    .template-selector label {
-      cursor: pointer; padding: 6px 10px; border-radius: 7px;
-      font-size: 15px; background: #f7fbff; color: #287fd7;
-      border: 1.6px solid #e2e9f3; margin-bottom: 4px;
-      font-weight: 600; display: flex; align-items: center; gap: 4px;
-      transition: border .18s, background .18s, color .18s;
-    }
-    .template-selector input[type="radio"] { display: none; }
-    .template-selector input:checked + span {
-      background: #e3f6fc; color: #0864ad; border: 2px solid #49c0fc;
-      box-shadow: 0 0 8px #b5dfff22;
+    .radio-row input[type="radio"]:checked + span {
+      background: #e3f6fc;
+      color: #0864ad;
+      border: 2px solid #49c0fc;
       font-weight: bold;
+      box-shadow: 0 0 8px #b5dfff55;
     }
-    .app-selector {
-      display: flex; justify-content: center; gap: 9px; margin-bottom: 15px; flex-wrap: wrap;
-    }
-    .app-selector label {
-      cursor: pointer; padding: 7px 13px; border-radius: 8px;
-      font-size: 15px; background: #f8fafd; color: #235a7c;
-      border: 1.5px solid #e1e8f1; margin-bottom: 3px;
-      font-weight: 600; display: flex; align-items: center; gap: 6px;
-      transition: border .18s, background .18s, color .18s;
-    }
-    .app-selector input[type="radio"] { display: none; }
-    .app-selector input:checked + span {
-      background: #d5f4ed; color: #0a8368; border: 2px solid #37dca8;
-      font-weight: bold;
-      box-shadow: 0 0 10px #37dca922;
-    }
-    textarea, input {
-      width: 100%; font-size: 15px; border-radius: 10px;
+
+    textarea, input[type="text"] {
+      width: 100%; font-size: 15px; border-radius: 9px;
       border: 2px solid #d6e0ef; margin-bottom: 1rem; background: #f7faff;
-      padding: 13px 12px; transition: border 0.25s;
+      padding: 11px 10px; transition: border 0.23s;
       font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
-      resize: vertical;
     }
-    textarea:focus, input:focus { border-color: #2F80ED; outline: none; }
+    textarea:focus, input[type="text"]:focus { border-color: #2F80ED; outline: none; }
     textarea {
-      min-height: 120px; max-height: 320px; line-height: 1.7;
-      transition: min-height .2s;
+      min-height: 110px; max-height: 320px; line-height: 1.7;
+      transition: min-height .18s;
+      margin-bottom: 9px;
     }
     .numbers-list {
-      display: flex; flex-direction: column; gap: 3px; font-size: 13px;
+      display: flex; flex-direction: column; gap: 3px; font-size: 12.5px;
       background: #f0f8ff;
-      border-radius: 8px; padding: 6px 7px 3px 8px; margin-bottom: 9px;
-      max-height: 95px; overflow-y: auto; color: #397bbf;
+      border-radius: 7px; padding: 5px 7px 2px 8px; margin-bottom: 9px;
+      max-height: 92px; overflow-y: auto; color: #397bbf;
     }
     .current-label {
-      font-size: 15px; font-weight: bold; color: #1178e5;
-      margin-bottom: 8px; text-align: center; letter-spacing: 1px;
+      font-size: 14px; font-weight: bold; color: #1178e5;
+      margin-bottom: 6px; text-align: center; letter-spacing: .5px;
     }
     .counter-bar {
-      text-align: center; margin-bottom: 8px; color: #004aad;
-      font-size: 13px; font-weight: 600;
+      text-align: center; margin-bottom: 6px; color: #004aad;
+      font-size: 12px; font-weight: 600;
     }
     .actions-row {
-      display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px;
+      display: flex; justify-content: space-between; gap: 7px; margin-bottom: 7px;
     }
     .actions-row button {
-      flex: 1 1 0; padding: 10px 0; border-radius: 9px; font-size: 15px; border: none;
-      background: #f7faff; color: #20609a; font-weight: bold; cursor: pointer; transition: 0.22s;
+      flex: 1 1 0; padding: 10px 0; border-radius: 8px; font-size: 14px; border: none;
+      background: #f7faff; color: #20609a; font-weight: bold; cursor: pointer; transition: 0.19s;
       border: 2px solid #b9dbf7; box-shadow: 0 1px 6px #b0e0ff11;
     }
     .actions-row button:disabled { opacity: 0.5; cursor: not-allowed;}
@@ -127,13 +111,14 @@
     .actions-row .skip { background: #ffe4b3; color: #b67a10;}
     .actions-row .prev { background: #eee; color: #333; border: 1.5px solid #d8dde6;}
     .footer {
-      margin-top: 1.3rem; font-size: 12px; color: #555; text-align: center; letter-spacing: 1px;
+      margin-top: 1.2rem; font-size: 11.3px; color: #555; text-align: center; letter-spacing: 1px;
     }
-    @media (max-width: 520px) {
-      .pro-box { padding: 10px 2px 14px 2px; }
-      .karim-logo { font-size: 1.05rem; letter-spacing: 3px;}
-      h1 { font-size: .98rem;}
-      textarea { min-height: 70px;}
+    @media (max-width: 500px) {
+      .pro-box { padding: 8px 1px 9px 1px; }
+      .karim-logo { font-size: .96rem; letter-spacing: 2px;}
+      h1 { font-size: .97rem;}
+      textarea { min-height: 65px;}
+      .radio-row label { font-size: 0.87em; min-width: 30px; padding: 4px 6px; }
     }
   </style>
 </head>
@@ -142,7 +127,7 @@
     <div class="karim-logo">KARIM</div>
     <h1>WhatsApp Broadcast Sender</h1>
     <!-- اللغات -->
-    <div class="lang-selector" id="langSelector">
+    <div class="radio-row" id="langSelector">
       <label><input type="radio" name="lang" value="en" checked /><span>🇬🇧 English</span></label>
       <label><input type="radio" name="lang" value="ar" /><span>🇸🇦 العربية</span></label>
       <label><input type="radio" name="lang" value="tr" /><span>🇹🇷 Türkçe</span></label>
@@ -150,13 +135,13 @@
       <label><input type="radio" name="lang" value="es" /><span>🇪🇸 Español</span></label>
     </div>
     <!-- قوالب الرسائل -->
-    <div class="template-selector" id="templateSelector">
+    <div class="radio-row" id="templateSelector">
       <label><input type="radio" name="template" value="intro" checked /><span>📝 Sales Intro</span></label>
       <label><input type="radio" name="template" value="thanks" /><span>🙏 Thank You</span></label>
       <label><input type="radio" name="template" value="products" /><span>📦 Products Info</span></label>
     </div>
     <!-- نوع الإرسال -->
-    <div class="app-selector" id="appSelector">
+    <div class="radio-row" id="appSelector">
       <label><input type="radio" name="wapp" value="web" checked /><span>💻 WhatsApp Web</span></label>
       <label><input type="radio" name="wapp" value="mobile" /><span>📱 WhatsApp Mobile</span></label>
     </div>
@@ -174,7 +159,7 @@
       <button onclick="gotoNext()" class="next" id="btnNext" title="Next">Next &rarr;</button>
     </div>
     <div class="numbers-list" id="numbersList" style="display:none;"></div>
-    <div class="footer">&copy; 2025 KARIM | WhatsApp Sequential Pro Sender</div>
+    <div class="footer">&copy; 2025 KARIM | WhatsApp Sender PRO</div>
   </div>
   <script>
     let numbers = [];
@@ -430,12 +415,10 @@ Departamento de Ventas`
     document.querySelectorAll('input[name="template"]').forEach(radio => {
       radio.addEventListener('change', updateMessageBox);
     });
-    // تحميل الرسالة الافتراضية عند فتح الصفحة
     window.addEventListener("DOMContentLoaded", () => {
       updateMessageBox();
       updateUI();
     });
-    // Shortcuts: arrow keys for next/prev
     window.addEventListener("keydown", e => {
       if(e.target.tagName.toLowerCase()==="textarea") return;
       if(e.key==="ArrowRight" || e.key==="Enter") gotoNext();
