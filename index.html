@@ -3,220 +3,191 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KARIM | WhatsApp Broadcast</title>
+  <title>KARIM | WhatsApp Sequential Pro Sender</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
       background: linear-gradient(135deg, #004aad, #0acffe);
+      min-height: 100vh; margin: 0;
       display: flex; align-items: center; justify-content: center;
-      height: 100vh; margin: 0;
     }
-    .container {
+    .pro-box {
       background: #fff;
-      padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-      width: 100%; max-width: 650px;
-      text-align: center;
+      box-shadow: 0 8px 32px #9bcef766;
+      padding: 34px 30px 28px 30px;
+      width: 100%; max-width: 430px;
+      position: relative;
     }
     .karim-logo {
       font-family: 'Cairo', 'Orbitron', 'Open Sans', sans-serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: 10px;
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: 8px;
       color: #004aad;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(90deg, #004aad, #49c0fc, #38e8be);
+      margin-bottom: 0.7rem;
+      background: linear-gradient(90deg, #004aad, #38e8be, #49c0fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-      text-shadow: 2px 4px 16px #bee7fa99, 0 2px 6px #69a1ef22;
+      text-shadow: 2px 4px 18px #bee7fa99, 0 2px 6px #69a1ef22;
       user-select: none;
+      text-align:center;
     }
     h1 {
-      font-size: 22px; margin-bottom: 1rem; color: #004aad;
+      font-size: 1.25rem; margin-bottom: 1.2rem; color: #004aad;
+      text-align: center;
+      letter-spacing: 1px;
     }
-    .options { display: flex; justify-content: center; gap: 18px; margin-bottom: 12px; }
-    .options label { font-size: 15px; cursor: pointer; }
-    .lang-selector { display: flex; justify-content: center; gap: 12px; margin-bottom: 8px; }
-    .lang-selector label { font-size: 14px; cursor: pointer; }
-    input, textarea {
-      width: 100%; padding: 13px; font-size: 15.5px;
-      border: 2px solid #d6e0ef; border-radius: 9px; margin-bottom: 1rem;
-      background: #f7faff;
-      transition: border 0.25s;
+    textarea, input {
+      width: 100%; font-size: 15px; border-radius: 9px;
+      border: 2px solid #d6e0ef; margin-bottom: 1rem; background: #f7faff;
+      padding: 11px; transition: border 0.25s;
       font-family: 'Open Sans', 'Cairo', Arial, sans-serif;
     }
-    input:focus, textarea:focus { border-color: #2F80ED; outline: none; }
-    textarea {
-      resize: vertical;
-      min-height: 250px;
-      max-height: 600px;
-      line-height: 1.7;
+    textarea:focus, input:focus { border-color: #2F80ED; outline: none; }
+    textarea { min-height: 90px; max-height: 350px; line-height: 1.7; }
+    .numbers-list {
+      display: flex; flex-direction: column; gap: 4px; font-size: 13.5px;
+      background: #f0f8ff;
+      border-radius: 8px; padding: 6px 7px 3px 8px; margin-bottom: 10px;
+      max-height: 120px; overflow-y: auto;
+      color: #397bbf;
     }
-    button {
-      width: 100%;
-      padding: 13px;
-      background-color: #25D366;
-      color: white;
-      border: none;
-      font-size: 16px;
+    .current-label {
+      font-size: 16px; font-weight: bold; color: #1178e5;
+      margin-bottom: 8px; text-align: center;
+      letter-spacing: 1px;
+    }
+    .counter-bar {
+      text-align: center;
+      margin-bottom: 8px;
+      color: #004aad;
+      font-size: 13.5px;
       font-weight: 600;
-      border-radius: 11px;
-      cursor: pointer;
-      box-shadow: 0 2px 10px #b0edc4;
-      transition: 0.25s;
-      margin-bottom: 5px;
     }
-    button:hover { background-color: #1ebc57; }
-    .footer { margin-top: 1.2rem; font-size: 12px; color: #555; }
-    @media (max-width: 500px) {
-      .container { padding: 1rem; }
-      .karim-logo { font-size: 1.5rem; letter-spacing: 5px; }
-      h1 { font-size: 16px; }
-      textarea { min-height: 180px; }
+    .actions-row {
+      display: flex; justify-content: space-between; gap: 7px;
+      margin-bottom: 8px;
+    }
+    .actions-row button {
+      flex: 1 1 0; padding: 11px 0;
+      border-radius: 9px; font-size: 16px; border: none;
+      background: #f7faff; color: #20609a; font-weight: bold;
+      cursor: pointer; transition: 0.22s;
+      border: 2px solid #b9dbf7;
+      box-shadow: 0 1px 6px #b0e0ff11;
+    }
+    .actions-row button:disabled {
+      opacity: 0.5; cursor: not-allowed;
+    }
+    .actions-row .next { background: #25D366; color: #fff; border: none;}
+    .actions-row .open { background: #004aad; color: #fff; border: none;}
+    .actions-row .skip { background: #ffe4b3; color: #b67a10; }
+    .actions-row .prev { background: #eee; color: #333; border: 1.5px solid #d8dde6;}
+    .footer {
+      margin-top: 1.3rem; font-size: 12px; color: #555; text-align: center;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 600px) {
+      .pro-box { padding: 14px 6px 14px 6px; }
+      .karim-logo { font-size: 1.2rem; letter-spacing: 3px; }
+      h1 { font-size: 1rem; }
+      .numbers-list { font-size: 12px; }
+      textarea { min-height: 65px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="pro-box">
     <div class="karim-logo">KARIM</div>
-    <h1>WhatsApp Broadcast Sender</h1>
-
-    <div class="options">
-      <label><input type="radio" name="sendtype" value="single" checked /> Single Contact</label>
-      <label><input type="radio" name="sendtype" value="multi" /> Multiple Contacts</label>
+    <h1>WhatsApp Sequential Pro Sender</h1>
+    <textarea id="numbersInput" placeholder="Paste numbers, comma or newline separated"></textarea>
+    <div class="current-label" id="currentLabel" style="display:none;"></div>
+    <div class="counter-bar" id="counter"></div>
+    <textarea id="messageInput" placeholder="Type or edit your message here"></textarea>
+    <div class="actions-row">
+      <button onclick="gotoPrev()" class="prev" id="btnPrev" title="Previous">&larr; Prev</button>
+      <button onclick="skip()" class="skip" id="btnSkip" title="Skip">Skip</button>
+      <button onclick="openCurrent()" class="open" id="btnOpen" title="Open WhatsApp">Open</button>
+      <button onclick="gotoNext()" class="next" id="btnNext" title="Next">Next &rarr;</button>
     </div>
-
-    <input type="text" id="phoneInput" placeholder="Enter phone number (e.g. 905123456789)" />
-    <textarea id="phonesInput" style="display:none;" placeholder="Enter numbers, comma or newline separated"></textarea>
-
-    <div class="lang-selector">
-      <label><input type="radio" name="lang" value="en" checked /> 🇬🇧 English</label>
-      <label><input type="radio" name="lang" value="ar" /> 🇸🇦 العربية</label>
-      <label><input type="radio" name="lang" value="tr" /> 🇹🇷 Türkçe</label>
-    </div>
-
-    <textarea id="messageBox" placeholder="Message will appear here and you can edit it before sending..."></textarea>
-    <button onclick="sendMessages()">📤 Send via WhatsApp Web</button>
-    <div class="footer">&copy; 2025 KARIM | Powered by ChatGPT 🚀</div>
+    <div class="numbers-list" id="numbersList" style="display:none;"></div>
+    <div class="footer">&copy; 2025 KARIM | WhatsApp Sequential Pro Sender</div>
   </div>
   <script>
-    const msgTemplates = {
-      en: `Hello 👋
+    let numbers = [];
+    let index = 0;
+    let skipped = [];
 
-My name is Karim,
-Sales Operations at EUROSWEET GIDA LTD. ŞTİ. (Istanbul – Turkey).
-
-We specialize in producing high-quality snacks such as:
-🍪 Croissants, Cakes, Biscuits, Donuts, Jelly, and Wafers.
-
-We're always eager to connect with reliable partners and explore new markets together. 🤝
-
-If you are interested, I would be happy to share our catalog, price list, and discuss how we can work together.
-
-Looking forward to your reply!
-
-Best regards,
-Karim
-📱 +90 552 080 29 16
-📧 karim@fmcgtrade.com.tr`,
-      ar: `مرحبًا 👋
-
-أنا كريم، مسؤول عمليات المبيعات في شركة EUROSWEET GIDA LTD. ŞTİ. (إسطنبول - تركيا).
-
-نحن متخصصون في إنتاج سناكات عالية الجودة مثل:
-🍪 الكرواسون، الكيك، البسكويت، الدونات، الجيلي، والويفر.
-
-نسعى دائمًا للتواصل مع شركاء موثوقين واستكشاف أسواق جديدة معًا 🤝
-
-إذا كنت مهتمًا، يسعدني أن أرسل لك الكتالوج وقائمة الأسعار، ومناقشة فرص التعاون المشترك.
-
-بانتظار ردكم الكريم!
-
-أطيب التحيات،
-كريم
-📱 +90 552 080 29 16
-📧 karim@fmcgtrade.com.tr`,
-      tr: `Merhaba 👋
-
-Ben Karim,
-EUROSWEET GIDA LTD. ŞTİ.'de Satış Operasyonları (İstanbul – Türkiye).
-
-Aşağıdaki yüksek kaliteli atıştırmalıkları üretiyoruz:
-🍪 Kruvasan, Kek, Bisküvi, Donut, Jöle ve Gofret.
-
-Her zaman güvenilir ortaklarla bağlantı kurmak ve yeni pazarları birlikte keşfetmek isteriz. 🤝
-
-Eğer ilgilenirseniz, kataloğumuzu ve fiyat listemizi paylaşabilir, olası iş birliğini konuşabiliriz.
-
-Cevabınızı dört gözle bekliyorum!
-
-Saygılarımla,
-Karim
-📱 +90 552 080 29 16
-📧 karim@fmcgtrade.com.tr`
-    };
-
-    // تغيير الرسالة الافتراضية مع تغيير اللغة
-    document.querySelectorAll('input[name="lang"]').forEach(radio => {
-      radio.addEventListener('change', function() {
-        const lang = this.value;
-        const messageBox = document.getElementById("messageBox");
-        messageBox.value = msgTemplates[lang];
-        messageBox.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
-        messageBox.style.textAlign = (lang === 'ar') ? 'right' : 'left';
-      });
-    });
-
-    // خيارات single/multi
-    document.querySelectorAll('input[name="sendtype"]').forEach(radio => {
-      radio.addEventListener('change', function() {
-        if (this.value === "multi") {
-          document.getElementById("phoneInput").style.display = "none";
-          document.getElementById("phonesInput").style.display = "";
-        } else {
-          document.getElementById("phoneInput").style.display = "";
-          document.getElementById("phonesInput").style.display = "none";
-        }
-      });
-    });
-
-    // تحميل الرسالة الافتراضية عند فتح الصفحة
-    window.addEventListener("DOMContentLoaded", () => {
-      const messageBox = document.getElementById("messageBox");
-      messageBox.value = msgTemplates.en;
-      messageBox.style.direction = 'ltr';
-      messageBox.style.textAlign = 'left';
-    });
-
-    // الإرسال
-    function sendMessages() {
-      const sendType = document.querySelector('input[name="sendtype"]:checked').value;
-      let phones = [];
-      if (sendType === "multi") {
-        const raw = document.getElementById("phonesInput").value;
-        phones = raw.split(/[\n,]+/).map(p => p.trim()).filter(p => /^\d{8,15}$/.test(p));
-      } else {
-        const phone = document.getElementById("phoneInput").value.trim();
-        if (/^\d{8,15}$/.test(phone)) phones = [phone];
-      }
-      const msg = document.getElementById("messageBox").value.trim();
-      if (phones.length === 0 || !msg) {
-        alert("Please enter valid phone number(s) and message.");
-        return;
-      }
-      let delay = 0;
-      phones.forEach(phone => {
-        setTimeout(() => {
-          const url = `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`;
-          window.open(url, '_blank');
-        }, delay);
-        delay += 2000;
-      });
+    function getNumbers() {
+      const raw = document.getElementById("numbersInput").value;
+      return raw.split(/[\n,]+/).map(p => p.replace(/\\D/g, "")).filter(p => p.length >= 8);
     }
+
+    function showNumbersList() {
+      let html = "";
+      numbers.forEach((n, i) => {
+        html += `<div${i===index?' style="background:#beeafd;border-radius:5px;"':''}>${i+1}. ${n}</div>`;
+      });
+      document.getElementById("numbersList").innerHTML = html;
+    }
+
+    function updateUI() {
+      numbers = getNumbers();
+      // فلترة الأرقام التي تم تخطيها
+      let left = numbers.length - skipped.length;
+      document.getElementById("counter").textContent = numbers.length
+        ? `Contact ${Math.min(index+1, numbers.length)} / ${numbers.length} (${left} remaining)`
+        : '';
+      document.getElementById("currentLabel").style.display = numbers.length ? "" : "none";
+      document.getElementById("numbersList").style.display = numbers.length ? "" : "none";
+      if (numbers.length) {
+        document.getElementById("currentLabel").textContent = `Current: ${numbers[index] || ''}`;
+      }
+      showNumbersList();
+      document.getElementById("btnPrev").disabled = index <= 0;
+      document.getElementById("btnNext").disabled = index >= numbers.length - 1;
+      document.getElementById("btnOpen").disabled = !numbers.length;
+      document.getElementById("btnSkip").disabled = skipped.includes(numbers[index]);
+    }
+
+    document.getElementById("numbersInput").addEventListener("input", function() {
+      index = 0; skipped = [];
+      updateUI();
+    });
+
+    function gotoNext() {
+      if (index < numbers.length - 1) index++;
+      updateUI();
+    }
+    function gotoPrev() {
+      if (index > 0) index--;
+      updateUI();
+    }
+    function skip() {
+      skipped.push(numbers[index]);
+      gotoNext();
+    }
+    function openCurrent() {
+      const msg = encodeURIComponent(document.getElementById("messageInput").value.trim());
+      if (!msg) return alert("Please enter your message first.");
+      if (!numbers[index]) return alert("No number selected.");
+      const url = `https://web.whatsapp.com/send?phone=${numbers[index]}&text=${msg}`;
+      window.open(url, "_blank");
+    }
+
+    // Shortcuts: arrow keys for next/prev
+    window.addEventListener("keydown", e => {
+      if(e.target.tagName.toLowerCase()==="textarea") return;
+      if(e.key==="ArrowRight" || e.key==="Enter") gotoNext();
+      if(e.key==="ArrowLeft") gotoPrev();
+    });
+
+    // Init
+    updateUI();
   </script>
 </body>
 </html>
